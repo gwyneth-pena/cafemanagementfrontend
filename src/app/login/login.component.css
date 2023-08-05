@@ -1,0 +1,18 @@
+.form-container{
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+@media (max-width: 768px) { 
+    .form-container{
+        padding-top: 150px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 576px) { 
+    .form-container{
+        padding-top: 200px;
+        padding-bottom: 30px;
+    }
+}

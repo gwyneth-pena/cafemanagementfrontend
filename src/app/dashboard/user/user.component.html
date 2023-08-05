@@ -1,0 +1,50 @@
+<div class="row ps-4">
+    <div class="col-12">
+        <div class="row d-flex justify-content-between">
+            <h4 class="col-lg-3 col-sm-12">View Users</h4>
+        </div>
+    
+        <div class="row my-3">
+            <div class="col-lg-11 col-9">
+                <ng-select [items]="usersInit"
+                [multiple]="true"
+                bindLabel="name"
+                [virtualScroll]="true"
+                appendTo="body"
+                name="search"
+                [(ngModel)]="search"
+                placeholder="Search name">
+                </ng-select>
+            </div>
+            <button (click)="searchUser(search)" class="col-lg-1 col-3 btn btn-outline-secondary"><i class="ri-search-line"></i></button>
+        </div>
+    
+        <div class="table-responsive my-3">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users; trackBy: trackbyFn">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.contactNumber}}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" [(ngModel)]="user.status" (change)="update(user)" type="checkbox" role="switch" id="status">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="users.length==0" class="text-center">
+                        <td colspan="6">No users.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>    
+    </div>
+</div>

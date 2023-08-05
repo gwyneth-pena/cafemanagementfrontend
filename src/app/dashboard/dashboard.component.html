@@ -1,0 +1,32 @@
+<div class="row ps-4">
+    <div class="col-12 col-lg-6 my-2">
+        <div class="card text-center">
+            <div class="card-body py-5">
+                <h3>Total Products: {{dashboardData.product}}</h3>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-secondary"><a class="text-white text-decoration-none" routerLink="/cafe/product/list">View Products</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 my-2">
+        <div class="card text-center">
+            <div class="card-body py-5">
+                <h3>Total Categories: {{dashboardData.category}}</h3>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-secondary"><a class="text-white text-decoration-none" routerLink="/cafe/category/list">View Categories</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 my-2">
+        <div class="card text-center">
+            <div class="card-body py-5">
+                <h3>Total Bills: {{dashboardData.bill}}</h3>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-secondary"><a class="text-white text-decoration-none" routerLink="/cafe/bill/list">View Bills</a></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 sidebar shadow-lg" [ngClass]="{'icon-only': showIconOnly}" style="height: 86vh">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li placement="right" ngbTooltip="{{item?.name}}" class="nav-item" *ngFor="let item of menus" [disableTooltip]="!showIconOnly">
+        <a routerLink="/cafe/{{item?.state}}" class="nav-link" routerLinkActive="active" aria-current="page">
+          <i [ngClass]="item?.icon" class="me-2"></i>
+          <span class="nav-text">{{item?.name}}</span>
+        </a>
+      </li>
+      <li placement="right" ngbTooltip="Change Password" class="nav-item" [disableTooltip]="!showIconOnly">
+        <a routerLink="/cafe/change_password" class="nav-link" routerLinkActive="active" aria-current="page">
+          <i class="me-2 ri-key-fill"></i>
+          <span class="nav-text">Change Password</span>
+        </a>
+      </li>
+      <li placement="right" ngbTooltip="Logout" class="nav-item pointer" (click)="logout()" [disableTooltip]="!showIconOnly">
+        <a class="nav-link" aria-current="page">
+          <i class="me-2 ri-logout-box-r-line"></i>
+          <span class="nav-text">Logout</span>
+        </a>
+      </li>
+    </ul>
+    <i *ngIf="!showIconOnly" [ngClass]="{'text-center': showIconOnly}" ngbTooltip="Minimize Sidebar" placement="right" class="ri-arrow-left-line text-end" (click)="showIconOnly=!showIconOnly; iconsOnly.emit('mini')"></i>
+    <i *ngIf="showIconOnly" [ngClass]="{'text-center': showIconOnly}" ngbTooltip="Maximize Sidebar" placement="right" class="ri-arrow-right-line text-end" (click)="showIconOnly=!showIconOnly;iconsOnly.emit('max')"></i>
+</div>

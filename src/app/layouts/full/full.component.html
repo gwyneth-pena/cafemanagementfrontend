@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="row col-12">
+    <div class="col-sm-12" [ngClass]="{'col-lg-1': isMiniSidebar, 'col-lg-2':!isMiniSidebar}">
+        <app-sidebar (iconsOnly)="iconsOnlyHandler($event)"></app-sidebar>
+    </div>
+    <div class="col-sm-12 py-lg-4 pe-lg-5 body" [ngClass]="{'col-lg-11': isMiniSidebar, 'col-lg-10': !isMiniSidebar}">
+        <router-outlet></router-outlet>
+    </div>    
+</div>

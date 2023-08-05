@@ -1,0 +1,15 @@
+<div> 
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">{{ title }}</h5>
+    </div>
+    <div class="modal-body" [innerHTML]="body"></div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close()">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Ok')">
+            Yes
+        </button>
+    </div>
+  </div>
+  

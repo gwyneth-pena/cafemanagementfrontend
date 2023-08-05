@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-white bg-white px-lg-3 shadow-sm">
+	<div class="container-fluid">
+		<button *ngIf="route.includes('cafe')" class="navbar-toggler rounded-0" id="btnToggleSidebar" (click)="toggleSideBar()" type="button" data-toggle="collapse"
+		data-target="#navbarNavSideBar" aria-controls="navbarNavSideBar" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  	</button>
+
+		<a class="navbar-brand fw-bold" [routerLink]="'/'"><img class="logo" src="../../../../assets/img/logo.png" alt="Coffee Corner Logo"></a>
+
+		<button *ngIf="!route.includes('cafe')" class="navbar-toggler rounded-0" (click)="isMenuCollapsed = !isMenuCollapsed" type="button" data-toggle="collapse"
+		  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+		  aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" *ngIf="!route.includes('cafe')" id="navbarNav">
+		  <ul class="navbar-nav ms-lg-auto">
+			  <li class="nav-item active mx-2" [ngClass]="{'mb-2': !isMenuCollapsed}">
+				  <button class="nav-link sign_up btn" [routerLink]="'/sign_up'" (click)="isMenuCollapsed = true">Sign Up</button>
+			  </li>
+			  <li class="nav-item active mx-2" [ngClass]="{'mb-2': !isMenuCollapsed}">
+				  <button class="nav-link login btn" [routerLink]="'/login'" (click)="isMenuCollapsed = true">Login</button>
+			  </li>
+		  </ul>
+		</div>
+	</div>
+</nav>

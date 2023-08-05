@@ -1,0 +1,41 @@
+p{
+    font-size: 14px;
+}
+
+i{
+    font-size: 24px;
+}
+
+.logo{
+    width: 250px !important;
+    margin-bottom: 30px;
+}
+
+.login{
+    background-color: var(--desert-sand);
+    color: black;
+    font-size: 20px;
+}
+
+.login:hover{
+    background-color: rgb(248, 206, 206);
+}
+
+.sign_up{
+    background-color: var(--snow);
+    color: black;
+    font-size: 20px;
+}
+
+.sign_up:hover{
+    background-color: #faf5ee;
+}
+
+.footer-end{
+    padding: 10px 0;
+    color: white;
+    background-color: var(--dark-brown);
+}
+.footer-end i{
+    color: white !important;
+}

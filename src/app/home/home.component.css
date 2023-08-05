@@ -1,0 +1,25 @@
+ngb-carousel .img{
+    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+ngb-carousel .carousel-caption{
+
+    background-color: aqua;
+    background-color: rgba(0, 0, 0, .25);
+    color: white;
+    padding: 40px;
+}
+
+.desc-section{
+    background-color: var(--snow);
+}
+
+
+@media (max-width: 576px) {
+    .w-sm-100 {
+        width: 100% !important;
+    }
+}

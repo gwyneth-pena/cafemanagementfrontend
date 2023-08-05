@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="container form-container">
+    <h3 class="text-center">Login</h3>
+
+    <div class="row my-5 align-items-center justify-content-center d-flex">
+        <form [formGroup]="form" class="col-lg-6" (ngSubmit)="submit()">
+            <div class="form-group my-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.get('email')?.errors}" formControlName="email" name="email" id="email">
+            </div>
+            <div class="form-group my-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="{{showPass? 'text': 'password'}}" class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.get('password')?.errors}" formControlName="password" name="password" id="password">
+                    <span class="input-group-addon p-2">
+                        <i class="pointer" [ngClass]="{'ri-eye-off-fill': showPass, 'ri-eye-fill': !showPass}" (click)="showPass=!showPass"></i>
+                    </span>
+                </div>
+            </div>
+            <p class="text-end"><a routerLink="/forgot_password">Forgot password?</a></p>
+            <div class="container overflow-hidden">
+                <div class="row gap-4">
+                    <button class="btn btn-outline-secondary col" (click)="reset()" type="button">Reset</button>
+                    <button class="btn btn-secondary col" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

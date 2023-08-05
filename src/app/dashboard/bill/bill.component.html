@@ -1,0 +1,112 @@
+<div class="row px-4 ps-4 pe-0">
+    <div class="col-12">
+        <div class="row d-flex justify-content-between">
+            <h4 class="col-lg-3 col-sm-12">View Bill</h4>
+        </div>
+    
+        <div class="row my-3">
+            <div class="col-lg-11 col-9">
+                <ng-select [items]="billOptions"
+                [multiple]="true"
+                [virtualScroll]="true"
+                appendTo="body"
+                name="search"
+                [(ngModel)]="search"
+                placeholder="Search name">
+                </ng-select>
+            </div>
+            <button (click)="searchBill(search)" class="col-lg-1 col-3 btn btn-outline-secondary"><i class="ri-search-line"></i></button>
+        </div>
+    
+        <div class="table-responsive my-3">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Payment Method</th>
+                        <th>File Name</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bill of bills trackBy: trackbyFn">
+                        <td>{{bill.name}}</td>
+                        <td>{{bill.email}}</td>
+                        <td>{{bill.contactNumber}}</td>
+                        <td>{{bill.paymentMethod}}</td>
+                        <td>{{bill.uuid}}.pdf</td>
+                        <td>{{bill.total}}</td>
+                        <td><i class="ri-eye-fill me-2 pointer" (click)="open(modBillModal, bill)"></i><i class="ri-file-download-fill me-2 pointer" (click)="downloadFile(bill)"></i><i class="ri-delete-bin-line pointer" (click)="deleteBill(bill)"></i>
+                        </td>
+                    </tr>
+                    <tr *ngIf="bills.length==0" class="text-center">
+                        <td colspan="7">No bills.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <ng-template class="modal" #modBillModal>
+            <div class="modal-header">
+                <h4 class="modal-title">{{modalTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive my-3">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><p><span class="fw-bold">Name</span>: {{modalData.name}}</p></td>
+                                <td><p><span class="fw-bold">Email</span>: {{modalData.email || "--"}}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p><span class="fw-bold">Contact Number</span>: {{modalData.contactNumber || "--"}}</p></td>
+                                <td><p><span class="fw-bold">Payment Method</span>: {{modalData.paymentMethod}}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="table-responsive my-3">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Sub Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let bill of modalData.productDetail; trackBy: trackbyFn">
+                                <td>{{bill.product.name}}</td>
+                                <td>{{bill.category}}</td>
+                                <td>{{bill.price}}</td>
+                                <td>{{bill.quantity}}</td>
+                                <td>{{bill.total}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Total</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{modalData.total}}</td>
+                            </tr>
+                            <tr *ngIf="modalData.productDetail.length==0" class="text-center">
+                                <td colspan="5">No products.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-secondary" (click)="modalRef.close()" type="button">
+                    Close
+                </button>
+            </div>
+        </ng-template>
+    </div>
+</div>

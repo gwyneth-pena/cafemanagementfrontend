@@ -1,0 +1,11 @@
+.full{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width:780px) {
+    .body{
+        padding-top: 130px !important;
+    }
+}

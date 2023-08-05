@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="container form-container">
+    <h3 class="text-center">Sign Up</h3>
+
+    <div class="row my-4 align-items-center justify-content-center d-flex">
+        <form [formGroup]="form" class="col-lg-6" (ngSubmit)="submit()">
+            <div class="form-group my-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.get('name')?.errors}" formControlName="name" name="name" id="name">
+            </div>
+            <div class="form-group my-3">
+                <label for="contactNumber" class="form-label">Contact Number</label>
+                <input type="tel" class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.get('contactNumber')?.errors}" formControlName="contactNumber" name="contactNumber" id="contactNumber">
+            </div>
+            <div class="form-group my-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.get('email')?.errors}" formControlName="email" name="email" id="email">
+            </div>
+            <div class="form-group my-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="{{showPass? 'text': 'password'}}" class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.hasError('passwordsNotMatched') || isSubmitted && form.get('password')?.errors}" formControlName="password" name="password" id="password">
+                    <span class="input-group-addon p-2">
+                        <i class="pointer" [ngClass]="{'ri-eye-off-fill': showPass, 'ri-eye-fill': !showPass}" (click)="showPass=!showPass"></i>
+                    </span>
+                </div>
+                <password-strength-meter [password]="form.value.password"></password-strength-meter>
+            </div>
+            <div class="form-group my-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <div class="input-group">
+                    <input type="{{showConfPass? 'text': 'password'}}"  class="form-control" [ngClass]="{'is-invalid': isSubmitted && form.hasError('passwordsNotMatched') || isSubmitted && form.get('confirmPassword')?.errors}" formControlName="confirmPassword" name="confirmPassword" id="confirmPassword">
+                    <span class="input-group-addon p-2">
+                        <i class="pointer" [ngClass]="{'ri-eye-off-fill': showConfPass, 'ri-eye-fill': !showConfPass}" (click)="showConfPass=!showConfPass"></i>
+                    </span>
+                </div>
+                <small class="text-danger" *ngIf="isSubmitted && form.hasError('passwordsNotMatched') ">Password should match.</small>
+            </div>
+            <div class="container overflow-hidden">
+                <div class="row gap-4">
+                    <button class="btn btn-outline-secondary col" (click)="reset()" type="button">Reset</button>
+                    <button class="btn btn-secondary col" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

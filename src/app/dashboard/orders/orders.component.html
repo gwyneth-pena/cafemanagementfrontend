@@ -1,0 +1,120 @@
+<div class="row ps-4">
+    <div class="col-12">
+        <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+            <div class="row d-flex justify-content-between">
+                <h4 class="col-3">Order</h4>
+                <button class="col-3 btn btn-secondary" [disabled]="selectedProducts.length==0||!form.valid">Submit and Get Bill</button>
+            </div>
+            <div class="row my-3">
+                <p class="fw-bold">Customer Details</p>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" formControlName="name" name="name" id="name">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="email" name="email" id="email">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="contactnum" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" formControlName="contactNumber" name="contactnum" id="contactnum">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="paymentMethod" class="form-label">Payment Method</label>
+                        <ng-select 
+                        [items]="paymentMethods"
+                        [virtualScroll]="true"
+                        name="paymentMethod"
+                        formControlName="paymentMethod"
+                        placeholder="Select payment method">
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <p class="fw-bold">Select Product</p>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="category" class="form-label">Category</label>
+                        <ng-select 
+                        [items]="categoryList"
+                        [virtualScroll]="true"
+                        name="category"
+                        bindLabel="name"
+                        (change)="getProducts(form.value.category?.id);this.form.controls['product'].setValue(null);form.controls['quantity'].setValue(0);form.controls['total'].setValue(0);form.controls['price'].setValue(null);"
+                        formControlName="category"
+                        placeholder="Select category">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="product" class="form-label">Product</label>
+                        <ng-select 
+                        [items]="productList"
+                        [virtualScroll]="true"
+                        name="product"
+                        bindLabel="name"
+                        (change)="form.controls['price'].setValue(form.value.product?.price);form.controls['quantity'].setValue(0);form.controls['product'].value?form.controls['quantity'].setValue(1):form.controls['quantity'].setValue(0);form.controls['total'].setValue(0); computeTotal();"
+                        formControlName="product"
+                        placeholder="Select product">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" formControlName="price" name="price" id="price" readonly>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" (change)="computeTotal()" formControlName="quantity" name="quantity" id="quantity">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label for="total" class="form-label">Total</label>
+                        <input type="number" class="form-control" formControlName="total" name="total" id="total" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-secondary col-lg-1 col-sm-2 ms-2" (click)="addToSelectedProducts(form.value)">Add</button>
+                </div>
+            </div>
+        </form>
+    
+        <div class="table-responsive" *ngIf="selectedProducts.length>0">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let prod of selectedProducts; trackBy: trackbyFn">
+                        <td>{{prod.product?.name}}</td>
+                        <td>{{prod.category?.name}}</td>
+                        <td>Php {{prod.price}}</td>
+                        <td>{{prod.quantity}}</td>
+                        <td>{{prod.total}}</td>
+                        <td><i class="ri-delete-bin-line pointer" (click)="removeSelectedProduct(prod)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
