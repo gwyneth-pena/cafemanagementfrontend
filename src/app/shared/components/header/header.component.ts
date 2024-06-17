@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     this.sidebar = this.document.getElementsByClassName("sidebar")[0];
-    (this.sidebar as HTMLElement).style.position = "absolute";
+    if(this.sidebar)(this.sidebar as HTMLElement).style.position = "absolute";
   }
 
   constructor(private router: Router,

@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DashboardGuard } from './dashboard.guard';
+import { DashboardService } from '../services/dashboard.service';
 
 describe('DashboardGuard', () => {
-  let guard: DashboardGuard;
+  let guard: typeof DashboardGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers:[DashboardService, {provide:DashboardGuard, useValue:DashboardGuard}]
+    });
     guard = TestBed.inject(DashboardGuard);
   });
 

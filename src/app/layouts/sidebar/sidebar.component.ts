@@ -28,9 +28,9 @@ export class SidebarComponent implements OnInit{
     this.menus = this.menuService.getMenuItems().filter((item:any)=>{
       let roles = item.role.split(',');
       roles.forEach((role:any) => {
-        role = role.toLowerCase();
+        role = role?.toLowerCase();
       });
-      if(roles.includes(this.userRole.toLowerCase())){
+      if(roles.includes(this.userRole?.toLowerCase())){
         return item;
       }
     });

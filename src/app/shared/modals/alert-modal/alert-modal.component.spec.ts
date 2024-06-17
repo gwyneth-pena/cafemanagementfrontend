@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertModalComponent } from './alert-modal.component';
+import { NgbActiveModal, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('AlertModalComponent', () => {
   let component: AlertModalComponent;
@@ -8,7 +9,8 @@ describe('AlertModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlertModalComponent ]
+      declarations: [ AlertModalComponent ],
+      providers: [NgbActiveModal]
     })
     .compileComponents();
 

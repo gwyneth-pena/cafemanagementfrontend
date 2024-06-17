@@ -85,7 +85,7 @@ export class BillComponent implements OnInit{
     let userRole = this.jwtHelperService.decodeToken()?.role;
     let email: string|undefined;
 
-    if(userRole.toLowerCase().includes('user')){
+    if(userRole?.toLowerCase().includes('user')){
       email = this.jwtHelperService.decodeToken()?.sub;
     }
 

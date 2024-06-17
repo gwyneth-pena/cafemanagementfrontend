@@ -1,13 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PermissionGuardGuard } from './permission-guard.guard';
+import { PermissionGuard } from './permission-guard.guard';
+import { MenuService } from '../menu/menu-items';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 describe('PermissionGuardGuard', () => {
-  let guard: PermissionGuardGuard;
+  let guard: typeof PermissionGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(PermissionGuardGuard);
+    TestBed.configureTestingModule({
+      providers: [MenuService, JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, {provide: PermissionGuard, useValue: PermissionGuard}]
+    });
+    guard = TestBed.inject(PermissionGuard);
   });
 
   it('should be created', () => {

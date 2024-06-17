@@ -5,7 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
-class ChangePassGuardService{
+export class ChangePassGuardService{
 
   constructor(private jwtHelperService: JwtHelperService){
 }
